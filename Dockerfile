@@ -40,9 +40,8 @@ WORKDIR /app
 COPY . /app 
 RUN mvn install
 
-ADD ./target/*.war $CATALINA_HOME/webapps/
-
-EXPOSE 8081
+ADD target/*.war $CATALINA_HOME/webapps/
 WORKDIR $CATALINA_HOME
+EXPOSE 8081
 
 CMD ["catalina.sh", "run"]
