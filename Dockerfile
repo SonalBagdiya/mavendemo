@@ -4,7 +4,6 @@ ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
 
 RUN mkdir -p "$CATALINA_HOME"
-WORKDIR $CATALINA_HOME
 
 # see https://www.apache.org/dist/tomcat/tomcat-8/KEYS
 RUN gpg --keyserver pool.sks-keyservers.net --recv-keys \
@@ -36,10 +35,14 @@ RUN set -x \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get install -y vim wget curl git maven
+WORKDIR /app
+
 COPY . /app 
 RUN mvn install
 
 ADD ./target/*.war $CATALINA_HOME/webapps/
 
 EXPOSE 8081
+WORKDIR $CATALINA_HOME
+
 CMD ["catalina.sh", "run"]
