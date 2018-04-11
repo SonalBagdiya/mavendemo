@@ -2,7 +2,7 @@ FROM java:8-jre
 
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 RUN mkdir -p "$CATALINA_HOME"
 
