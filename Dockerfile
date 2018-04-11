@@ -11,9 +11,9 @@
 
 FROM maven:3.5-jdk-8-alpine
 WORKDIR /app
-COPY . /app/mavendemo /app (2)
+COPY . /app (2)
 RUN mvn install (3)
 FROM openjdk:8-jre-alpine
 WORKDIR /app
-COPY --from=1 /app/target/spring-petclinic-1.5.1.jar /app (4)
+COPY /app/target/* /app (4)
 #CMD ["java -jar spring-petclinic-1.5.1.jar"] (5)
