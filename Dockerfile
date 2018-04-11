@@ -9,12 +9,15 @@
 #EXPOSE 8080
 #WORKDIR $JETTY_BASE
 
-FROM maven:3.5-jdk-8-alpine
-RUN mkdir app
-WORKDIR /app
-COPY . /app (2)
-RUN mvn install (3)
 FROM openjdk:8-jre-alpine
+RUN  \
+  export DEBIAN_FRONTEND=noninteractive && \
+  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+  apt-get update && \
+  apt-get -y upgrade && \
+  apt-get install -y vim wget curl git maven
+  
 WORKDIR /app
-COPY /app/target/* /app (4)
+COPY . /app 
+RUN mvn install 
 #CMD ["java -jar spring-petclinic-1.5.1.jar"] (5)
