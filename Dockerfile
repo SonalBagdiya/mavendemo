@@ -10,6 +10,7 @@
 #WORKDIR $JETTY_BASE
 
 FROM maven:3.5-jdk-8-alpine
+RUN mkdir app
 WORKDIR /app
 COPY . /app (2)
 RUN mvn install (3)
