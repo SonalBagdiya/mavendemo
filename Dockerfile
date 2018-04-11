@@ -9,7 +9,7 @@
 #EXPOSE 8080
 #WORKDIR $JETTY_BASE
 
-FROM openjdk:8-jre-alpine
+FROM java:8
 RUN  \
   export DEBIAN_FRONTEND=noninteractive && \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
