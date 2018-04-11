@@ -28,10 +28,9 @@ RUN set -x \
     && curl -fSL "$TOMCAT_TGZ_URL" -o tomcat.tar.gz \
     && curl -fSL "$TOMCAT_TGZ_URL.asc" -o tomcat.tar.gz.asc \
     && gpg --verify tomcat.tar.gz.asc \
-    && tar -xvf tomcat.tar.gz --strip-components=1 \
-    && rm bin/*.bat \
-    && rm tomcat.tar.gz*
-RUN  \
+    && tar -xvf tomcat.tar.gz --strip-components=1 
+    
+    RUN  \
   export DEBIAN_FRONTEND=noninteractive && \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
